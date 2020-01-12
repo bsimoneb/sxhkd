@@ -1,0 +1,59 @@
+#!/usr/bin/env sh
+
+#xfce terminal
+super + Return
+	eval $TERMINAL
+#	x-terminal-emulator
+
+#sublime
+shift + ctrl + w
+	eval $EDITOR
+#Pycharm
+shift + ctrl + p
+	/home/simone/Downloads/pycharm-community-2018.3.2/bin/pycharm.sh
+#Spotify
+shift + ctrl + s
+	spotify
+#Foxit Reader
+shift + ctrl + r 
+	eval $READER
+#Browser
+shift + ctrl + b
+	eval $BROWSER
+#Email
+shift + ctrl + e
+	eval $EMAIL
+# Thunar File Manager 
+shift + ctrl + t
+        eval $FILEMANAGER
+
+# Audio
+alt + {Down, Up}
+    amixer -q set Master 1%{-,+}
+#	amixer -q set PCM 1%{-,+} #decrease/raise volume
+alt + m
+	amixer -D pulse set Master 1+ toggle #mute/unmute
+
+alt + super + m
+	amixer -q set Master 100% #max volume
+#Brightness
+alt + ctrl + Up
+	xbacklight -inc 10 #raise brightness
+alt + ctrl + Down
+	xbacklight -dec 10 #decrease brightness
+ 
+
+#shutdown
+ctrl + F1
+	shutdown -h now
+#spotify 
+
+	#next
+ctrl + F11
+	dbus-send --print-reply  --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+	#previous
+ctrl + F9
+	dbus-send --print-reply  --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+	#stop
+ctrl + F10
+	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
