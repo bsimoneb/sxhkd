@@ -3,44 +3,54 @@
 #xfce terminal
 super + Return
 	eval $TERMINAL
-#	x-terminal-emulator
+	
 
 #sublime
-shift + ctrl + w
+super + ctrl + w
 	eval $EDITOR
 #Pycharm
-shift + ctrl + p
-	/home/simone/Downloads/pycharm-community-2018.3.2/bin/pycharm.sh
+super + ctrl + p
+	code
 #Spotify
-shift + ctrl + s
+super + ctrl + s
 	spotify
 #Foxit Reader
-shift + ctrl + r 
+super + ctrl + r 
 	eval $READER
 #Browser
-shift + ctrl + b
+super + ctrl + b
 	eval $BROWSER
 #Email
-shift + ctrl + e
+super + ctrl + e
 	eval $EMAIL
 # Thunar File Manager 
-shift + ctrl + t
+super + ctrl + t
         eval $FILEMANAGER
+
+# Change the keyboard layout
+super + F3
+	setxkbmap it   
+super + F5
+        setxkbmap se   
+
 
 # Audio
 alt + {Down, Up}
-    amixer -q set Master 1%{-,+}
+    pactl -- set-sink-volume @DEFAULT_SINK@ {-,+}10%
+#    amixer -q set Master 1%{-,+}
 #	amixer -q set PCM 1%{-,+} #decrease/raise volume
 alt + m
-	amixer -D pulse set Master 1+ toggle #mute/unmute
+    pactl set-sink-mute @DEFAULT_SINK@ toggle	
+#	amixer -D pulse set Master 1+ toggle #mute/unmute
 
 alt + super + m
-	amixer -q set Master 100% #max volume
+#	amixer -q set Master 100% #max volume
+	pactl set-sink mute @DEFAULT_SINK@ +140%
 #Brightness
-alt + ctrl + Up
-	xbacklight -inc 10 #raise brightness
-alt + ctrl + Down
-	xbacklight -dec 10 #decrease brightness
+#alt + ctrl + Up
+#	xbacklight -inc 10 #raise brightness
+#alt + ctrl + Down
+#	xbacklight -dec 10 #decrease brightness
  
 
 #shutdown
@@ -57,3 +67,4 @@ ctrl + F9
 	#stop
 ctrl + F10
 	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+
